@@ -105,6 +105,7 @@
                 root: [
                     // HTML tags
                     [/(<!\[CDATA\[)/, 'metatag'],
+                    [/\]\]>/, 'metatag'],
                     [/(<!--)/, 'comment', '@comment'],
                     [/(<)(\w+)(\/>)/, ['delimiter', 'tag', 'delimiter']],
                     [/(<)([\w\-]+)(\s*)(>)/, ['delimiter', 'tag', '', 'delimiter']],
@@ -140,7 +141,40 @@
         // Set language configuration for auto-closing brackets and comments
         monaco.languages.setLanguageConfiguration('xsl', {
             autoClosingPairs: [{
-                open: '<', close:'>' , }, { open:'"' , close:'"' , }, { open:'{' , close:'}' , }, ], surroundingPairs: [{ open:'<' , close:'>' , }, { open:'"' , close:'"' , }, { open:'{' , close:'}' , }, ], comments: { lineComment:'//' , blockComment: ['<!--','-->' ], }, }); auto complete labels. Follow the same process as ones below to add another monaco.languages.registerCompletionItemProvider('xsl', { provideCompletionItems: ()=> {
+                open: '<',
+                close: '>',
+            },
+                               {
+                                   open: '"',
+                                   close: '"',
+                               },
+                               {
+                                   open: '{',
+                                   close: '}',
+                               },
+                              ],
+            surroundingPairs: [{
+                open: '<',
+                close: '>',
+            },
+                               {
+                                   open: '"',
+                                   close: '"',
+                               },
+                               {
+                                   open: '{',
+                                   close: '}',
+                               },
+                              ],
+            comments: {
+                lineComment: '//',
+                blockComment: ['<!--', '-->'],
+            },
+        });
+
+        // auto complete labels. Follow the same process as ones below to add another
+        monaco.languages.registerCompletionItemProvider('xsl', {
+            provideCompletionItems: () => {
                 const suggestions = [{
                     label: 'xsl:template',
                     kind: monaco.languages.CompletionItemKind.Snippet,
@@ -151,7 +185,7 @@
                                      {
                                          label: 'xsl:value-of',
                                          kind: monaco.languages.CompletionItemKind.Snippet,
-                                         insertText: '<xsl:value-of select="${1:path}"/>',
+                                         insertText: '<xsl:value-of select="${1:path}" />',
                                          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
                                          documentation: 'XSL Value Of',
                                      },
@@ -305,15 +339,14 @@
     /* ========================= Helpers =================*/
 
     // used to clean various text issues
-    // First cleanup is to remove any instances of << or>>. This is due to if a user types <xsl:.. for autocomplete it will add an
-		< and> to the end which becomes a problem
+    // First cleanup is to remove any instances of << or >>. This is due to if a user types <xsl:.. for autocomplete it will add an < and > to the end which becomes a problem
     // no second cleanup yet
     const cleanMonacoText = (editor) => {
         const model = editor.getModel();
         if (model) {
             const value = model.getValue();
             // Correctly replace duplicate angle brackets
-            const cleanedValue = value.replace(/<<+ g,'<' ).replace(/>>+/g, '>');
+            const cleanedValue = value.replace(/<<+/g, '<').replace(/>>+/g, '>');
 
             // Only apply edit if there's a change
             if (value !== cleanedValue) {
@@ -603,8 +636,8 @@
                 const operator = container.querySelector('select')?.value || '[operator]';
                 const value = container.querySelector('input')?.value || '[value]';
                 return `<xsl:if test="${path} ${operator} '${value}'">
-				<!-- Put your code here for what happens if the condition is true <br> you can also get rid of the operator and textbox and just check if the node exists by just doing something like test="node you want to check"-->
-			</xsl:if>`;
+  <!-- Put your code here for what happens if the condition is true <br> you can also get rid of the operator and textbox and just check if the node exists by just doing something like test="node you want to check"-->
+</xsl:if>`;
                 },
             },
             'Choose/When/Otherwise': {
@@ -613,10 +646,10 @@
                     const path =
                           container.querySelector('button.node-button')?.textContent || '[path]';
                     return `<xsl:choose>
-				<xsl:when test="${path}">Much like the if statement, you can do a condition like is user/user_group = student <br> In this case we are testing if the node exist, then do this</xsl:when>
-					<!--You can do multiple <xsl:when...> if you have multiple conditions you want to test for</br>Like if you want to change text based on different user_groups <br> just keep each <xsl:when...> inside the <xsl:choose> tags-->
-					<xsl:otherwise>Otherwise, do this instead</xsl:otherwise>
-				</xsl:choose>`;
+  <xsl:when test="${path}">Much like the if statement, you can do a condition like is user/user_group = student <br> In this case we are testing if the node exist, then do this</xsl:when>
+  <!--You can do multiple <xsl:when...> if you have multiple conditions you want to test for</br>Like if you want to change text based on different user_groups <br> just keep each <xsl:when...> inside the <xsl:choose> tags-->
+  <xsl:otherwise>Otherwise, do this instead</xsl:otherwise>
+</xsl:choose>`;
                 },
             },
             'For-Each': {
@@ -727,18 +760,18 @@
         leftPane.id = 'conditions-pane';
         leftPane.innerHTML = `
         <h1>Conditions</h1>
-				<button class="value" onclick="ifStatment()">If Statement</button>
-				<button class="value" onclick="chooseWhenOtherwiseStatement()">Choose/When/Otherwise</button>
-				<button class="value" onclick="forEachStatement()">For-Each</button>
-				<button class="value" onclick="valueOfStatement()">Value-Of</button>
-				<button class="value" onclick="sortStatement()">Sort</button>
+        <button class="value" onclick="ifStatment()">If Statement</button>
+        <button class="value" onclick="chooseWhenOtherwiseStatement()">Choose/When/Otherwise</button>
+        <button class="value" onclick="forEachStatement()">For-Each</button>
+        <button class="value" onclick="valueOfStatement()">Value-Of</button>
+        <button class="value" onclick="sortStatement()">Sort</button>
     `;
 
             const middlePane = document.createElement('td');
             middlePane.id = 'middle-pane';
             middlePane.innerHTML = `
         <h1>Condition Builder</h1>
-				<div id="condition-output"/>
+        <div id="condition-output"></div>
     `;
         // Create overlay
         const overlay = document.createElement('div');
@@ -763,7 +796,7 @@
 
             const rightPane = document.createElement('td');
             rightPane.id = 'builder-right-wrapper';
-            rightPane.innerHTML = '<div id="builder-right-pane"/>';
+            rightPane.innerHTML = '<div id="builder-right-pane"></div>';
 
             row.appendChild(leftPane);
             row.appendChild(middlePane);
@@ -839,8 +872,7 @@
         const helpDiv = document.getElementById('helpText');
         const info = helpInfo[command];
         if (info) {
-            helpDiv.innerHTML = `<p>${info.text}</p>
-				<a href='${info.link}' target='_blank'>Learn more at W3Schools</a>`;
+            helpDiv.innerHTML = `<p>${info.text}</p><a href='${info.link}' target='_blank'>Learn more at W3Schools</a>`;
         } else {
             helpDiv.innerHTML = '<p>No help available for this command.</p>';
         }
@@ -898,7 +930,9 @@
 
     // was back and forth when trying to put this in but i think its good to show users they can do this
     function createOperatorComboBox() {
-        const operators = ['=', '!=', '<', '>','<=' ,'>=' ]; const select=document.createElement('select' ); operators.forEach((op)=> {
+        const operators = ['=', '!=', '<', '>', '<=', '>='];
+        const select = document.createElement('select');
+        operators.forEach((op) => {
             const option = document.createElement('option');
             option.value = op;
             option.textContent = op;
@@ -1263,9 +1297,7 @@
         navBarWrapper.id = 'nav-bar-wrapper';
         const navBarDiv = document.createElement('div');
         navBarDiv.id = 'nav-bar-container';
-        navBarDiv.innerHTML = '<table id="navBarTable" style="text-align:center">
-																	<tr id="navBarRow"/>
-																</table>';
+        navBarDiv.innerHTML = '<table id="navBarTable" style="text-align:center"><tr id="navBarRow"></tr></table>';
         navBarWrapper.append(navBarDiv);
         letterContainer.firstChild.before(navBarWrapper);
         // putting the add buttons here ensures they are added when the nav bar exists
@@ -1362,5 +1394,6 @@
         valueOfStatement,
         sortStatement
     });
+
 
 })();
