@@ -49,9 +49,9 @@ Once Tampermonkey is installed:
 - Open the **Alma Letters Editor**
 - After a few seconds, the editor will change to a new editor that allows better coding control
 - Look for the new toolbar with:
-  - `Update Preview` – apply XSL changes
-  - `Detach Preview` – open the preview in a separate window
-  - `Condition Builder` – easily insert a conditional XSL using an XML tree
+  - `Update Preview` – apply XSL changes and update the letter preview window.
+  - `Detach Preview` – open the letter preview in a separate window and extend code boxes to fill the page. Makes editing easier.
+  - `Condition Builder` – Helps with crafting the XSL-specific coding for adding information from the XML to your letter.
 
 The script replaces Alma’s old editor with a modern, user-friendly version and adds visual tools to help build advanced logic with ease.
 
