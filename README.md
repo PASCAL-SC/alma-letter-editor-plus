@@ -1,4 +1,4 @@
-# Alma Letter Toolbelt
+# Alma Letter Editor Plus
 
 This tool adds powerful editing features to Ex Libris Alma’s Letter Editor, including:
 
