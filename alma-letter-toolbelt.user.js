@@ -104,8 +104,7 @@
             tokenizer: {
                 root: [
                     // HTML tags
-                    [/(<!\[
-]>/, 'metatag'],
+                    [/(<!\[CDATA\[)/, 'metatag'],
                     [/(<!--)/, 'comment', '@comment'],
                     [/(<)(\w+)(\/>)/, ['delimiter', 'tag', 'delimiter']],
                     [/(<)([\w\-]+)(\s*)(>)/, ['delimiter', 'tag', '', 'delimiter']],
