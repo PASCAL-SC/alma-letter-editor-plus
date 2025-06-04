@@ -79,12 +79,6 @@ This script:
 
 ---
 
-## 📄 License
-
-MIT License – You’re free to use, modify, and share this.
-
----
-
 ## 💬 Maintained by
 
 **PASCAL** – Partnership Among South Carolina Academic Libraries  
