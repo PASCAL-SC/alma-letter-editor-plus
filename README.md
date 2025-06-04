@@ -36,7 +36,7 @@ Install Tampermonkey by clicking one of the links below:
 Once Tampermonkey is installed:
 
 1. Click this link to install the script:  
-   👉 **[Install Script](https://github.com/PASCAL-SC/alma-letter-editor-plus/blob/main/alma-letter-toolbelt.user.js)**
+   👉 **[Install Script](https://github.com/PASCAL-SC/alma-letter-editor-plus/raw/refs/heads/main/alma-letter-toolbelt.user.js)**
 
 2. Tampermonkey will prompt you to confirm. Click **Install**.
 
