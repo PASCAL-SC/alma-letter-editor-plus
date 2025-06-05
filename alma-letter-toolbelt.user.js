@@ -1285,6 +1285,9 @@
 .xsl-template button, .xsl-template select, .xsl-template input {
   margin: 2px;
 }
+#node-button {
+	padding: 5px !important;
+}
   `;
         document.head.appendChild(style);
     }
