@@ -63,7 +63,7 @@ If nothing happens:
 
 - Make sure Tampermonkey is installed and **enabled**
 - Make sure the script is **installed** and **enabled**
-- Refresh the Alma Letters Editor page
+- Refresh the Alma Letters Editor page. Sometimes due to how alma loads tampermonkey doesn't know that you are on the proper page.
 
 If the issue continues, contact your Alma system administrator or [open an issue](https://github.com/PASCAL-SC/alma-letter-editor-plus/issues).
 
