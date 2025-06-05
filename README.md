@@ -20,7 +20,7 @@ A ChatGPT model has been created to also assist with Letter editing that is sepa
 
 ## What do I need to install?
 
-Before using the tool, you need to install **Tampermonkey**, a browser extension that allows this tool to run safely in your browser.
+Before using the tool, you need to install **Tampermonkey**, a browser extension that allows this tool to run in your browser.
 
 ### Step 1: Install Tampermonkey
 
@@ -64,7 +64,7 @@ If nothing happens:
 
 - Make sure Tampermonkey is installed and **enabled**
 - Make sure the script is **installed** and **enabled**
-- Refresh the Alma Letters Editor page. Sometimes due to how alma loads tampermonkey doesn't know that you are on the proper page.
+- Refresh the Alma Letters Editor page. Sometimes, due to how Alma loads, Tampermonkey doesn't know that you are on the proper page.
 
 If the issue continues, contact your Alma system administrator or [open an issue](https://github.com/PASCAL-SC/alma-letter-editor-plus/issues).
 
