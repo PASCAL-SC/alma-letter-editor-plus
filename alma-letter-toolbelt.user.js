@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Alma Letter Editor Plus
 // @namespace    https://github.com/PASCAL-SC/alma-letter-editor-plus
-// @version      1.0.0
+// @version      1.0.1
 // @description  Monaco editor, condition builder, and UX enhancements for Ex Libris Alma letter editor. ----Created by Alex Selvey with PASCAL-----
 // @match        https://*.alma.exlibrisgroup.com/ng/letterEditor/letters?*
 // @grant        none
@@ -1309,7 +1309,7 @@
         style.textContent = `
   #nav-bar-wrapper {
     width: 30%;
-    margin: 20px auto;
+    margin: 5px auto;
     background-color: #2b2b2b;
     padding: 10px;
     border-radius: 10px;
