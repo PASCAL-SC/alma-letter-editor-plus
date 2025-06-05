@@ -76,7 +76,7 @@ This script:
 
 - Does **not** access personal or private data
 - Only runs on Alma's letter editor URLs
-- It is open source and freely inspectable on this GitHub page
+- It only adds changes to the letters page that are not permanent and the tampermonkey script can be disabled to show the normal Alma letter editor.
 
 ---
 
