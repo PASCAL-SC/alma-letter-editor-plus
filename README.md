@@ -12,6 +12,7 @@ This tool adds powerful editing features to Ex Libris Alma’s Letter Editor, in
 ## Who is this for?
 
 This script is designed for **library staff and Alma administrators** who require a more efficient way to manage Alma letter customizations.
+A ChatGPT model has been created to also assist with Letter editing that is separate from this repo, but could still be useful: https://chatgpt.com/g/g-6841acfe24b081918431d9fd494de367-pascal-alma-letters-assistant
 
 > ⚠️ You must already have permission to use the Alma Letters Editor to use this tool.
 
@@ -19,7 +20,7 @@ This script is designed for **library staff and Alma administrators** who requir
 
 ## What do I need to install?
 
-Before using the tool, you need to install **Tampermonkey**, a browser extension that allows this tool to run safely in your browser.
+Before using the tool, you need to install **Tampermonkey**, a browser extension that allows this tool to run in your browser.
 
 ### Step 1: Install Tampermonkey
 
@@ -63,9 +64,9 @@ If nothing happens:
 
 - Make sure Tampermonkey is installed and **enabled**
 - Make sure the script is **installed** and **enabled**
-- Refresh the Alma Letters Editor page. Sometimes due to how alma loads tampermonkey doesn't know that you are on the proper page.
+- Refresh the Alma Letters Editor page. Sometimes, due to how Alma loads, Tampermonkey doesn't know that you are on the proper page.
 
-If the issue continues, contact your Alma system administrator or [open an issue](https://github.com/PASCAL-SC/alma-letter-editor-plus/issues).
+If the issue continues, [open an issue](https://github.com/PASCAL-SC/alma-letter-editor-plus/issues).
 
 ---
 
