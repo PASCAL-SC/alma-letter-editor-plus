@@ -12,9 +12,10 @@ This tool adds powerful editing features to Ex Libris Alma’s Letter Editor, in
 ## Who is this for?
 
 This script is designed for **library staff and Alma administrators** who require a more efficient way to manage Alma letter customizations.
-A ChatGPT model has been created to also assist with Letter editing that is separate from this repo, but could still be useful: https://chatgpt.com/g/g-6841acfe24b081918431d9fd494de367-pascal-alma-letters-assistant
 
 > ⚠️ You must already have permission to use the Alma Letters Editor to use this tool.
+
+A ChatGPT model has been created to also assist with Letter editing that is separate from this repo, but could still be useful: https://chatgpt.com/g/g-6841acfe24b081918431d9fd494de367-pascal-alma-letters-assistant
 
 ---
 
@@ -76,7 +77,7 @@ This script:
 
 - Does **not** access personal or private data
 - Only runs on Alma's letter editor URLs
-- It is open source and freely inspectable on this GitHub page
+- It only adds changes to the letters page that are not permanent and the tampermonkey script can be disabled to show the normal Alma letter editor.
 
 ---
 
