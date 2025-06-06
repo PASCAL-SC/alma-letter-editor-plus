@@ -69,6 +69,8 @@ If nothing happens:
 - Make sure the script is **installed** and **enabled**
 - Refresh the Alma Letters Editor page. Sometimes, due to how Alma loads, Tampermonkey doesn't know that you are on the proper page.
 
+  ![Refresh Page](https://github.com/PASCAL-SC/alma-letter-editor-plus/blob/main/.github/assets/refreshPage.gif)
+
 If the issue continues, [open an issue](https://github.com/PASCAL-SC/alma-letter-editor-plus/issues).
 
 ---
