@@ -55,6 +55,8 @@ Once Tampermonkey is installed:
   - `Detach Preview` – open the letter preview in a separate window and extend code boxes to fill the page. Makes editing easier.
   - `Condition Builder` – Helps with crafting the XSL-specific coding for adding information from the XML to your letter.
 
+ ![Preview of Condition Builder](https://github.com/PASCAL-SC/alma-letter-editor-plus/blob/main/.github/assets/navBar.png)
+
 The script replaces Alma’s old editor with a modern, user-friendly version and adds visual tools to help build advanced logic with ease.
 
 ---
