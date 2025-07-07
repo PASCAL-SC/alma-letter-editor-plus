@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Alma Letter Editor Plus
 // @namespace    https://github.com/PASCAL-SC/alma-letter-editor-plus
-// @version      1.1.1
+// @version      1.1.2
 // @description  Monaco editor, condition builder, and UX enhancements for Ex Libris Alma letter editor. ----Created by Alex Selvey with PASCAL-----
 // @match        https://*.alma.exlibrisgroup.com/ng/letterEditor/letters?*
 // @grant        none
@@ -683,24 +683,34 @@
     function loadFancyTree(callback) {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href =
-            'https://cdnjs.cloudflare.com/ajax/libs/jquery.fancytree/2.38.1/skin-win8/ui.fancytree.min.css';
+        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/jquery.fancytree/2.38.1/skin-win8/ui.fancytree.min.css';
         document.head.appendChild(link);
 
         const scriptJQ = document.createElement('script');
-        // i'm sure alma has jquery, but i think it's not accesible so this makes life easier
-        // so i can jsut copy paste some of the fancytree code examples. Never used it before now
-        scriptJQ.src =
-            'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js';
+        scriptJQ.src = 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js';
         scriptJQ.onload = () => {
             const jqFancy = window.jQuery.noConflict(true);
             window.jqFancy = jqFancy;
+
+            // Manually expose jqFancy as the global jQuery **just temporarily** This allows this to attach correctly so fancy tree loads correctly
+            const previousJQ = window.jQuery;
+            const previous$ = window.$;
+            window.jQuery = jqFancy;
+            window.$ = jqFancy;
+
             const scriptFT = document.createElement('script');
-            scriptFT.src =
-                'https://cdnjs.cloudflare.com/ajax/libs/jquery.fancytree/2.38.1/jquery.fancytree-all-deps.min.js';
-            scriptFT.onload = callback;
+            scriptFT.src = 'https://cdnjs.cloudflare.com/ajax/libs/jquery.fancytree/2.38.1/jquery.fancytree-all-deps.min.js';
+            scriptFT.onload = () => {
+                // Restore Alma's jQuery after FancyTree registers. I tried attaching a global var to make this work but fancy tree wouldn't load so this seems to work for now.
+                window.jQuery = previousJQ;
+                window.$ = previous$;
+
+                callback();
+            };
+
             document.head.appendChild(scriptFT);
         };
+
         document.head.appendChild(scriptJQ);
     }
 
