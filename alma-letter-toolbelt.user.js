@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Alma Letter Editor Plus
 // @namespace    https://github.com/PASCAL-SC/alma-letter-editor-plus
-// @version      1.0.1
+// @version      1.1.1
 // @description  Monaco editor, condition builder, and UX enhancements for Ex Libris Alma letter editor. ----Created by Alex Selvey with PASCAL-----
 // @match        https://*.alma.exlibrisgroup.com/ng/letterEditor/letters?*
 // @grant        none
@@ -557,8 +557,8 @@
 
             // Clear previous tree contents
             const treeContainer = document.getElementById('builder-right-pane');
-            if (treeContainer && $.ui.fancytree.getTree(treeContainer)) {
-                $(treeContainer).fancytree('destroy');
+            if (treeContainer && jqFancy.ui.fancytree.getTree(treeContainer)) {
+                jqFancy(treeContainer).fancytree('destroy');
             }
 
             initializeFancyTree(xmlString);
@@ -607,7 +607,7 @@
             children: xmlToFancyTree(xmlDoc.documentElement),
         }];
 
-        $('#builder-right-pane').fancytree({
+        jqFancy('#builder-right-pane').fancytree({
             source: treeData,
             checkbox: false,
             selectMode: 1,
@@ -622,7 +622,7 @@
             },
         });
         // adds the connector lines
-        $('.fancytree-container').addClass('fancytree-connectors');
+        jqFancy('.fancytree-container').addClass('fancytree-connectors');
     }
 
 
@@ -693,6 +693,8 @@
         scriptJQ.src =
             'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js';
         scriptJQ.onload = () => {
+            const jqFancy = window.jQuery.noConflict(true);
+            window.jqFancy = jqFancy;
             const scriptFT = document.createElement('script');
             scriptFT.src =
                 'https://cdnjs.cloudflare.com/ajax/libs/jquery.fancytree/2.38.1/jquery.fancytree-all-deps.min.js';
@@ -711,7 +713,7 @@
         const collapseButton = document.createElement('button');
         collapseButton.textContent = 'Collapse All';
         collapseButton.onclick = () => {
-            const tree = $.ui.fancytree.getTree('#builder-right-pane');
+            const tree = jqFancy.ui.fancytree.getTree('#builder-right-pane');
             if (tree) {
                 tree.visit(function (node) {
                     node.setExpanded(false);
@@ -731,7 +733,7 @@
 
         toggleEmptyCheckbox.addEventListener('change', () => {
             const showEmpty = toggleEmptyCheckbox.checked;
-            const tree = $.ui.fancytree.getTree('#builder-right-pane');
+            const tree = jqFancy.ui.fancytree.getTree('#builder-right-pane');
             if (tree) {
                 tree.visit(function (node) {
                     if (node.title.includes('[Empty]')) {
@@ -889,7 +891,7 @@
 
     // example of jquery making life easier
     function getSelectedNodeInfo(button, treeId) {
-        const tree = $.ui.fancytree.getTree(treeId);
+        const tree = jqFancy.ui.fancytree.getTree(treeId);
         const node = tree.getActiveNode();
 
         if (node) {
